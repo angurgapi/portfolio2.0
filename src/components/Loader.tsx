@@ -1,8 +1,20 @@
 import { Html, useProgress } from "@react-three/drei";
+import React, { useState, useEffect } from "react";
 import solarsystem from "../assets/solar-system.svg";
 
-const Loader = () => {
+interface LoaderProps {
+  onLoaderComplete: () => void;
+}
+
+const Loader: React.FC<LoaderProps> = ({ onLoaderComplete }) => {
   const { progress } = useProgress();
+  const [isLoadingComplete, setIsLoadingComplete] = useState(false);
+  useEffect(() => {
+    if (progress >= 100 && !isLoadingComplete) {
+      setIsLoadingComplete(true);
+      onLoaderComplete(); // Emit the event when loading is complete
+    }
+  }, [progress, isLoadingComplete, onLoaderComplete]);
   return (
     <Html>
       <div className="opacity-30 flex flex-col">

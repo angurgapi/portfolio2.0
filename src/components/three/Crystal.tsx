@@ -1,4 +1,4 @@
-import React, { Suspense, useRef, useEffect } from "react";
+import React, { Suspense, useRef, useState, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 
@@ -20,13 +20,14 @@ const Crystal = () => {
 
 const CrystalCanvas = () => {
   const orbitControlsRef = useRef<any>(null);
+  const [rotate, setRotate] = useState(false);
 
-  useEffect(() => {
-    // Start auto-rotation on component mount
-    if (orbitControlsRef.current) {
-      orbitControlsRef.current.autoRotate = true;
-    }
-  }, [orbitControlsRef.current]);
+  // useEffect(() => {
+  //   // Start auto-rotation on component mount
+  //   if (orbitControlsRef.current) {
+  //     orbitControlsRef.current.autoRotate = true;
+  //   }
+  // }, [orbitControlsRef.current]);
   return (
     <Canvas
       shadows
@@ -43,10 +44,18 @@ const CrystalCanvas = () => {
       <directionalLight castShadow position={[4, 13, 6]} color={0xfffade} />
       {/* <pointLight position={[-14, 3, 6]} /> */}
       <ambientLight color={0x0909ab} />
-      <Suspense fallback={<Loader />}>
+      <Suspense
+        fallback={
+          <Loader
+            onLoaderComplete={() => {
+              setRotate(true);
+            }}
+          />
+        }
+      >
         <OrbitControls
           ref={orbitControlsRef}
-          autoRotate={false}
+          autoRotate={rotate}
           rotateSpeed={0.8}
           // enableDamping={false}
         />
