@@ -32,7 +32,7 @@ const CrystalCanvas = () => {
         fov: 45,
         near: 0.1,
         far: 200,
-        position: [-7, 3, 6],
+        position: [-8, 1, -4],
       }}
     >
       <directionalLight castShadow position={[4, 13, 6]} color={0xfffade} />

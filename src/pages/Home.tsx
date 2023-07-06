@@ -13,7 +13,7 @@ const Home = () => {
   useEffect(() => {
     setTimeout(() => {
       setIntroVisible(true);
-    }, 3000);
+    }, 2000);
   }, []);
 
   return (
