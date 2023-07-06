@@ -38,7 +38,7 @@ const ProjectsSection = () => {
     },
   ];
 
-  const { ref, inView, entry } = useInView({ threshold: 0.2 });
+  const { ref, inView, entry } = useInView({ threshold: 0.1 });
 
   return (
     <div

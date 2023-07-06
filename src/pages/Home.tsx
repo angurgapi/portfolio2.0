@@ -18,7 +18,7 @@ const Home = () => {
 
   return (
     <div className="h-full flex flex-col">
-      <div className="fixed h-full w-full top-0">
+      <div className="fixed h-[100vh] w-full top-0 bottom-0">
         <Crystal />
       </div>
       <div className="absolute w-full">

@@ -8,7 +8,7 @@ import Loader from "../Loader";
 const Crystal = () => {
   const crystal = useGLTF("./crystal/scene.gltf");
   const mobCrystal = useGLTF("./crystal/mobScene.gltf");
-  console.log(isMobile);
+
   return (
     <primitive
       object={isMobile ? mobCrystal.scene : crystal.scene}
@@ -21,7 +21,7 @@ const Crystal = () => {
 };
 
 const CrystalCanvas = React.memo(() => {
-  const orbitControlsRef = useRef<any>(null);
+  // const orbitControlsRef = useRef<any>(null);
   const [rotate, setRotate] = useState(false);
 
   return (
@@ -44,19 +44,24 @@ const CrystalCanvas = React.memo(() => {
         fallback={
           <Loader
             onLoaderComplete={() => {
-              setRotate(true);
+              setTimeout(() => {
+                setRotate(true);
+              }, 1000);
             }}
           />
         }
       >
-        <OrbitControls
-          ref={orbitControlsRef}
-          autoRotate={rotate}
-          rotateSpeed={0.9}
-          // enableDamping={false}
-        />
         <Crystal />
-
+        <OrbitControls
+          // ref={orbitControlsRef}
+          autoRotate={rotate}
+          rotateSpeed={isMobile ? 0.3 : 0.5}
+          enableDamping={true}
+          dampingFactor={0.05}
+          enableZoom={false}
+          enablePan={false}
+          // enableRotate={false}
+        />
         <Preload all />
       </Suspense>
     </Canvas>
