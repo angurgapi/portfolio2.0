@@ -52,8 +52,8 @@ const ProjectsSection = () => {
         Some of my projects
       </p>
       <div className="w-[80vw] m-auto mt-20 flex flex-wrap justify-center gap-5 ">
-        {projects.map((project) => (
-          <ProjectBlock project={project} />
+        {projects.map((project, idx) => (
+          <ProjectBlock key={idx} project={project} />
         ))}
       </div>
     </div>

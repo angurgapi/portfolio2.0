@@ -45,8 +45,9 @@ const SkillsSection = () => {
       </p>
 
       <div className="w-[80vw] max-w-[600px] m-auto mt-5 flex flex-wrap justify-center gap-2 md:gap-3">
-        {skillSet.map((skill) => (
+        {skillSet.map((skill, idx) => (
           <motion.div
+            key={idx}
             initial={inView ? { scale: 0, rotate: 180 } : { scale: 0 }}
             animate={inView ? { rotate: 0, scale: 1 } : { scale: 0 }}
             transition={{

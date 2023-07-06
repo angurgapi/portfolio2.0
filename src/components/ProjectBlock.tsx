@@ -29,8 +29,10 @@ const ProjectBlock: React.FC<ProjectBlockProps> = ({ project }) => {
         </h3>
         <p className="mt-2 text-secondary text-[14px]">{project.description}</p>
         <div className="flex flex-wrap mt-2">
-          {project.stack.map((tech) => (
-            <span className="mr-2 text-[14px]">{tech}</span>
+          {project.stack.map((tech, idx) => (
+            <span className="mr-2 text-[14px]" key={idx}>
+              {tech}
+            </span>
           ))}
         </div>
       </div>

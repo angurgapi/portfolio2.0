@@ -1,15 +1,17 @@
 import React, { Suspense, useRef, useState, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
+import { isMobile } from "react-device-detect";
 
 import Loader from "../Loader";
 
 const Crystal = () => {
   const crystal = useGLTF("./crystal/scene.gltf");
-
+  const mobCrystal = useGLTF("./crystal/mobScene.gltf");
+  console.log(isMobile);
   return (
     <primitive
-      object={crystal.scene}
+      object={isMobile ? mobCrystal.scene : crystal.scene}
       scale={0.15}
       position-y={-3}
       // position-x={-15}
