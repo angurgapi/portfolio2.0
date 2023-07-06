@@ -22,12 +22,6 @@ const CrystalCanvas = () => {
   const orbitControlsRef = useRef<any>(null);
   const [rotate, setRotate] = useState(false);
 
-  // useEffect(() => {
-  //   // Start auto-rotation on component mount
-  //   if (orbitControlsRef.current) {
-  //     orbitControlsRef.current.autoRotate = true;
-  //   }
-  // }, [orbitControlsRef.current]);
   return (
     <Canvas
       shadows
@@ -56,7 +50,7 @@ const CrystalCanvas = () => {
         <OrbitControls
           ref={orbitControlsRef}
           autoRotate={rotate}
-          rotateSpeed={0.8}
+          rotateSpeed={0.9}
           // enableDamping={false}
         />
         <Crystal />

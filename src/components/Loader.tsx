@@ -12,7 +12,7 @@ const Loader: React.FC<LoaderProps> = ({ onLoaderComplete }) => {
   useEffect(() => {
     if (progress >= 100 && !isLoadingComplete) {
       setIsLoadingComplete(true);
-      onLoaderComplete(); // Emit the event when loading is complete
+      onLoaderComplete();
     }
   }, [progress, isLoadingComplete, onLoaderComplete]);
   return (
