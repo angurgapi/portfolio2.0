@@ -55,7 +55,7 @@ const Navbar = () => {
           {navLinks.map((nav) => (
             <li
               key={nav.id}
-              className="hover:text-white text-[18px] font-medium cursor-pointer"
+              className="hover:text-cyan-100 text-[18px] font-medium cursor-pointer"
             >
               <a href={`#${nav.id}`}>{nav.title}</a>
             </li>

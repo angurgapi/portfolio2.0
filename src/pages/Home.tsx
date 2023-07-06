@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 
 import Crystal from "../components/three/Crystal";
 import SkillsSection from "../components/SkillsSection";
+import ProjectsSection from "../components/ProjectsSection";
+import ContactSection from "../components/ContactSection";
 
 const Home = () => {
   const [introVisible, setIntroVisible] = useState(false);
@@ -27,14 +29,18 @@ const Home = () => {
             }`}
           >
             <p>
-              <span className="text-cyan-100">Hello!</span> My name is Sofia
-              Zarowska.
+              <span className="text-cyan-100">Hello!</span> My name is{" "}
+              <span className="text-cyan-200">Sofia Zarowska</span>.
             </p>
             <p className="mt-4">I'm a frontend developer</p>
           </div>
         </div>
 
         <SkillsSection />
+
+        <ProjectsSection />
+
+        <ContactSection />
       </div>
     </div>
   );

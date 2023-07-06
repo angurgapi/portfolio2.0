@@ -1,6 +1,7 @@
 import { useInView } from "react-intersection-observer";
+import ProjectBlock from "./ProjectBlock";
 
-const SkillsSection = () => {
+const ProjectsSection = () => {
   const projects = [
     {
       title: "Kodala",
@@ -8,7 +9,7 @@ const SkillsSection = () => {
       sourceLink: "https://github.com/angurgapi/tsota-front",
       imageUrl: "img/kodala.png",
       stack: ["Nuxt2", "nest.js", "TypeScript", "mongoDB", "i18n"],
-      description: "An app for learning georgian language",
+      description: "An app for learning the basics of Georgian language",
     },
     {
       title: "My Book Club",
@@ -28,7 +29,7 @@ const SkillsSection = () => {
     },
 
     {
-      title: "smartass",
+      title: "Smartass",
       demoLink: "https://smartass3.netlify.app/",
       sourceLink: "https://github.com/angurgapi/smartassv3",
       imageUrl: "img/smartass.png",
@@ -37,27 +38,25 @@ const SkillsSection = () => {
     },
   ];
 
-  const { ref, inView, entry } = useInView({ threshold: 0.3 });
+  const { ref, inView, entry } = useInView({ threshold: 0.2 });
 
   return (
     <div
       ref={ref}
-      id="skills"
-      className={`mt-3 h-[500px] pt-5 flex flex-col transition-opacity duration-1000 ${
+      id="projects"
+      className={`mt-20 pt-5 flex flex-col transition-opacity duration-1000 ${
         inView ? "opacity-100" : "opacity-0"
       }`}
     >
       <p className="text-3xl md:text-5xl text-center text-cyan-100">
-        Tools i work with
+        Some of my projects
       </p>
-      <div className="w-[80vw] max-w-[600px] m-auto mt-5 flex flex-wrap justify-center gap-3">
-        {skillSet.map((skill) => (
-          <div key={skill} className="bg-blur inline-block p-3 rounded">
-            {skill}
-          </div>
+      <div className="w-[80vw] m-auto mt-20 flex flex-wrap justify-center gap-5 ">
+        {projects.map((project) => (
+          <ProjectBlock project={project} />
         ))}
       </div>
     </div>
   );
 };
-export default SkillsSection;
+export default ProjectsSection;
