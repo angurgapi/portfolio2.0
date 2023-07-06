@@ -20,7 +20,7 @@ const Crystal = () => {
   );
 };
 
-const CrystalCanvas = () => {
+const CrystalCanvas = React.memo(() => {
   const orbitControlsRef = useRef<any>(null);
   const [rotate, setRotate] = useState(false);
 
@@ -61,6 +61,6 @@ const CrystalCanvas = () => {
       </Suspense>
     </Canvas>
   );
-};
+});
 
 export default CrystalCanvas;
