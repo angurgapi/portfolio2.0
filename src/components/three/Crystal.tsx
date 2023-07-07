@@ -11,31 +11,31 @@ const Crystal = () => {
 
   const crystalScene = useRef<any>(null);
 
-  useEffect(() => {
-    if (isMobile && crystalScene.current) {
-      let currentRotation = 0;
-      let targetRotation = 0;
+  // useEffect(() => {
+  //   if (isMobile && crystalScene.current) {
+  //     let currentRotation = 0;
+  //     let targetRotation = 0;
 
-      const handleTouchStart = () => {
-        targetRotation += 0.02;
-      };
+  //     const handleTouchStart = () => {
+  //       targetRotation += 0.02;
+  //     };
 
-      const updateRotation = () => {
-        const deltaRotation = targetRotation - currentRotation;
-        currentRotation += deltaRotation * 0.1;
-        crystalScene.current!.rotation.y = currentRotation;
+  //     const updateRotation = () => {
+  //       const deltaRotation = targetRotation - currentRotation;
+  //       currentRotation += deltaRotation * 0.1;
+  //       crystalScene.current!.rotation.y = currentRotation;
 
-        requestAnimationFrame(updateRotation);
-      };
+  //       requestAnimationFrame(updateRotation);
+  //     };
 
-      window.addEventListener("scroll", handleTouchStart);
-      requestAnimationFrame(updateRotation);
+  //     window.addEventListener("scroll", handleTouchStart);
+  //     requestAnimationFrame(updateRotation);
 
-      return () => {
-        window.removeEventListener("scroll", handleTouchStart);
-      };
-    }
-  }, []);
+  //     return () => {
+  //       window.removeEventListener("scroll", handleTouchStart);
+  //     };
+  //   }
+  // }, []);
   return (
     <primitive
       object={isMobile ? mobCrystal.scene : crystal.scene}
