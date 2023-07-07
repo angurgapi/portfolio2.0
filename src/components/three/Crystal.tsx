@@ -9,13 +9,41 @@ const Crystal = () => {
   const crystal = useGLTF("./crystal/scene.gltf");
   const mobCrystal = useGLTF("./crystal/mobScene.gltf");
 
+  const crystalScene = useRef<any>(null);
+
+  useEffect(() => {
+    if (isMobile && crystalScene.current) {
+      let currentRotation = 0;
+      let targetRotation = 0;
+
+      const handleTouchStart = () => {
+        targetRotation += 0.02;
+      };
+
+      const updateRotation = () => {
+        const deltaRotation = targetRotation - currentRotation;
+        currentRotation += deltaRotation * 0.1;
+        crystalScene.current!.rotation.y = currentRotation;
+
+        requestAnimationFrame(updateRotation);
+      };
+
+      window.addEventListener("scroll", handleTouchStart);
+      requestAnimationFrame(updateRotation);
+
+      return () => {
+        window.removeEventListener("scroll", handleTouchStart);
+      };
+    }
+  }, []);
   return (
     <primitive
       object={isMobile ? mobCrystal.scene : crystal.scene}
       scale={0.15}
       position-y={-3}
+      ref={crystalScene}
       // position-x={-15}
-      // rotation-y={-10}
+      rotation-y={0}
     />
   );
 };
@@ -27,7 +55,7 @@ const CrystalCanvas = React.memo(() => {
   return (
     <Canvas
       shadows
-      frameloop="demand"
+      frameloop={isMobile ? "always" : "demand"}
       dpr={[1, 2]}
       gl={{ preserveDrawingBuffer: true }}
       camera={{
@@ -52,16 +80,18 @@ const CrystalCanvas = React.memo(() => {
         }
       >
         <Crystal />
-        <OrbitControls
-          // ref={orbitControlsRef}
-          autoRotate={rotate}
-          rotateSpeed={isMobile ? 0.3 : 0.5}
-          enableDamping={true}
-          dampingFactor={0.05}
-          enableZoom={false}
-          enablePan={false}
-          // enableRotate={false}
-        />
+        {!isMobile && (
+          <OrbitControls
+            // ref={orbitControlsRef}
+            autoRotate={rotate}
+            rotateSpeed={isMobile ? 0.3 : 0.5}
+            enableDamping={true}
+            dampingFactor={0.05}
+            enableZoom={false}
+            enablePan={false}
+            // enableRotate={false}
+          />
+        )}
         <Preload all />
       </Suspense>
     </Canvas>
